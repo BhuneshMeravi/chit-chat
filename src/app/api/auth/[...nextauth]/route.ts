@@ -1,6 +1,5 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
 
 const handler = NextAuth({
   providers: [
@@ -10,8 +9,7 @@ const handler = NextAuth({
         username: { label: "email", type: "text", placeholder: "" },
         password: { label: "password", type: "password", placeholder: "" },
       },
-      async authorize(credentials: any) {
-        const { username, password } = credentials;
+      async authorize(credentials: Record<string, string> | undefined) {
         const user = {
           name: "User",
           email: "harkirat",
