@@ -11,6 +11,7 @@ const handler = NextAuth({
         password: { label: "password", type: "password", placeholder: "" },
       },
       async authorize(credentials: any) {
+        const { username, password } = credentials;
         const user = {
           name: "User",
           email: "harkirat",
@@ -25,11 +26,11 @@ const handler = NextAuth({
         }
       },
     }),
-    
-    GoogleProvider({
-      clientId: "asdf",
-      clientSecret: "asdff",
-    })
+
+    // GoogleProvider({
+    //   clientId: "asdf",
+    //   clientSecret: "asdff",
+    // })
   ],
   // secret: process.env.SECRET,
 });
