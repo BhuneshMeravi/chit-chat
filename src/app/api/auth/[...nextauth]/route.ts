@@ -9,11 +9,11 @@ const handler = NextAuth({
         username: { label: "email", type: "text", placeholder: "" },
         password: { label: "password", type: "password", placeholder: "" },
       },
-      async authorize(credentials: Record<string, string> | undefined) {
+      async authorize(credentials) {
         const user = {
           name: "User",
-          email: "harkirat",
-          id: "user1",
+          email: "harkirat@gmail.com",
+          id: "1",
         };
         if (user) {
           return user;
@@ -30,7 +30,7 @@ const handler = NextAuth({
     //   clientSecret: "asdff",
     // })
   ],
-  // secret: process.env.SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 });
 
 export { handler as GET, handler as POST };
