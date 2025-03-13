@@ -1,6 +1,14 @@
 import mongoose from "mongoose";
 
-const messageModel = new mongoose.Schema(
+export interface IMessage extends mongoose.Document {
+  sender: mongoose.Types.ObjectId | string;
+  content: string;
+  chat: mongoose.Types.ObjectId | string;
+  readBy: (mongoose.Types.ObjectId | string)[];
+  createdAt?: Date;
+}
+
+const messageModel = new mongoose.Schema<IMessage>(
   {
     sender: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     content: { type: String, trim: true },
@@ -12,6 +20,6 @@ const messageModel = new mongoose.Schema(
   }
 );
 
-const Message = mongoose.model("Message", messageModel);
+const Message = mongoose.models?.Message ||  mongoose.model<IMessage>("Message", messageModel);
 
-module.exports = Message;
+export default Message;

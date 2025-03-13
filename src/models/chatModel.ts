@@ -1,6 +1,15 @@
 import mongoose from "mongoose";
 
-const chatModel = new mongoose.Schema(
+export interface IChat extends mongoose.Document {
+  chatName: string;
+  isGroupChat: boolean;
+  users: (mongoose.Types.ObjectId | string)[];
+  latestMessage: mongoose.Types.ObjectId | string;
+  groupAdmin: mongoose.Types.ObjectId | string;
+  createdAt?: Date;
+}
+
+const chatModel = new mongoose.Schema<IChat>(
   {
     chatName: { type: String, trim: true },
     isGroupChat: { type: Boolean, default: false },
@@ -24,6 +33,6 @@ const chatModel = new mongoose.Schema(
   }
 );
 
-const Chat = mongoose.model("Chat", chatModel);
+const Chat = mongoose.models.Chat || mongoose.model<IChat>("Chat", chatModel);
 
 export default Chat;
