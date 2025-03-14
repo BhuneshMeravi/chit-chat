@@ -14,7 +14,7 @@ export const authOptions: AuthOptions = {
         password: { label: "password", type: "password", placeholder: "" },
       },
       async authorize(credentials) {
-        if (!credentials || !credentials.username || !credentials.password || !credentials.name) {
+        if (!credentials || !credentials.username || !credentials.password) {
           throw new Error("Please enter all fields");
         }
         await connectDB();

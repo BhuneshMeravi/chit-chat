@@ -1,38 +1,49 @@
-// "use client"
+"use client"
 
 import { getServerSession } from "next-auth";
 
-// import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
+import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
+import { useEffect, useState } from "react";
 
-// export default function Home() {
-//   return (
-//     <SessionProvider>
-//       <RealHome />
-//     </SessionProvider>
-//   );
-// }
+export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
 
-// function RealHome() {
-//   const session= useSession();
-//   return (
-//     <div>
-//       {JSON.stringify(session)}
-//       {session.status === "authenticated" && <button onClick={() => signOut()}>Sign out</button> }
-//       {session.status === "unauthenticated" && <button onClick={() => signIn()}>Sign In</button> }
-//     </div>
-//   );
-// }
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <SessionProvider>
+      <RealHome />
+    </SessionProvider>
+  );
+}
+
+function RealHome() {
+  const session= useSession();
+  return (
+    <div>
+      {JSON.stringify(session)}
+      {session.status === "authenticated" && <button onClick={() => signOut()}>Sign out</button> }
+      {session.status === "unauthenticated" && <button onClick={() => signIn()}>Sign In</button> }
+    </div>
+  );
+}
 
 // =========================================================
 
-export default async function Home() {
-  const session = await getServerSession();
-  console.log("session",session)
-  return <>
-  <div>{JSON.stringify(session)}</div>
-  <div>{"ok"}</div>
-  </> 
-}
+// export default async function Home() {
+//   const session = await getServerSession();
+//   console.log("session",session)
+//   return <>
+//   <div>{JSON.stringify(session)}</div>
+//   <div>{"ok"}</div>
+//   </> 
+// }
 
 // =========================================================
 
