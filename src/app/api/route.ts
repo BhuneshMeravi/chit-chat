@@ -2,7 +2,7 @@ import { connectDB } from "@/lib/database";
 import User from "@/models/userModel";
 import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from "next/server";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "./auth/[...nextauth]/auth";
 
 export async function GET(req: NextRequest) {
   await connectDB();
