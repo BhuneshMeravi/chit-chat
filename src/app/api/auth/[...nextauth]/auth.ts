@@ -9,11 +9,12 @@ export const authOptions: AuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
+        name: { label: "name", type: "text", placeholder: "" },
         username: { label: "email", type: "text", placeholder: "" },
         password: { label: "password", type: "password", placeholder: "" },
       },
       async authorize(credentials) {
-        if (!credentials || !credentials.username || !credentials.password) {
+        if (!credentials || !credentials.username || !credentials.password || !credentials.name) {
           throw new Error("Please enter all fields");
         }
         await connectDB();
@@ -28,7 +29,7 @@ export const authOptions: AuthOptions = {
         if (!isPasswordValid) {
           throw new Error("Invalid password");
         }
-        return { email: user.email, id: user._id.toString() };
+        return { name:user.name,  email: user.email, id: user._id.toString() };
       },
     }),
 
