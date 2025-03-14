@@ -1,6 +1,6 @@
 // "use client"
 
-// // import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 
 // import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";
 
@@ -25,20 +25,24 @@
 
 // =========================================================
 
-// export default async function Home() {
-//   const session = await getServerSession();
-//   return <div>{JSON.stringify(session)}</div>;
-// }
+export default async function Home() {
+  const session = await getServerSession();
+  console.log("session",session)
+  return <>
+  <div>{JSON.stringify(session)}</div>
+  <div>{"ok"}</div>
+  </> 
+}
 
 // =========================================================
 
-import { Button, HStack } from "@chakra-ui/react"
+// import { Button, HStack } from "@chakra-ui/react"
 
-export default function Demo() {
-  return (
-    <HStack>
-      <Button>Click me</Button>
-      <Button>Click me</Button>
-    </HStack>
-  )
-}
+// export default function Demo() {
+//   return (
+//     <HStack>
+//       <Button>Click me</Button>
+//       <Button>Click me</Button>
+//     </HStack>
+//   )
+// }

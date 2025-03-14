@@ -12,8 +12,8 @@ export async function GET(){
 
 export async function POST(request: NextRequest) {
     try {
-        const {email, password} = await request.json();
-        if(!email || !password) {
+        const {name, email, password} = await request.json();
+        if(!name || !email || !password) {
             return NextResponse.json({message: "Please enter all fields"}, {status: 400});
         }
 
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({message: "User alreadyexists"}, {status: 400});
         }
 
-        await User.create({email, password});
+        await User.create({name, email, password});
         return NextResponse.json({message: "User registered successfully"}, {status: 201});
     }
      catch (error) {

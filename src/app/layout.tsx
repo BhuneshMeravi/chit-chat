@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 const workSans = Work_Sans({
   variable: "--font-work-sans",
-  weight: ["300"],  
+  weight: ["300"],
   subsets: ["latin"],
 });
 
